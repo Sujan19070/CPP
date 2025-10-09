@@ -1,0 +1,136 @@
+Alright, let’s go through **how this code actually works step-by-step at runtime**, almost like we’re watching it execute.
+
+---
+
+## **Working Process**
+
+### **Step 1 — Program starts**
+
+* The program begins execution in `main()`.
+
+---
+
+### **Step 2 — Creating the object**
+
+```cpp
+Test tst;
+```
+
+* A `Test` object named `tst` is created.
+* Since no constructor is defined, the default constructor is used — the variables `a` and `b` are uninitialized until we set them.
+
+---
+
+### **Step 3 — Setting initial values**
+
+```cpp
+tst.SetAB(15,15);
+```
+
+* `SetAB(15,15)` sets:
+
+  * `a = 15`
+  * `b = 15`
+* Now the `tst` object internally holds:
+
+  ```
+  a = 15
+  b = 15
+  ```
+
+---
+
+### **Step 4 — First calculation (A*B*10)**
+
+```cpp
+cout << "\nA*B*10 : " << AtimesBtimes10(tst);
+```
+
+* The function `AtimesBtimes10(tst)` is called.
+* **Important**: `tst` is passed **by value** → this means the function works on a **copy** of `tst`.
+
+---
+
+#### **Inside `AtimesBtimes10()`**
+
+1. **Copy creation**
+
+   * A copy of `tst` is made:
+
+     ```
+     a = 15
+     b = 15
+     ```
+2. **Changing the copy**
+
+   ```cpp
+   tst.SetAB(10,10);
+   ```
+
+   * Now in the copy:
+
+     ```
+     a = 10
+     b = 10
+     ```
+3. **Multiplication and return**
+
+   ```cpp
+   return tst.GetAtimesB() * 10;
+   ```
+
+   * `GetAtimesB()` → `10 * 10 = 100`
+   * Multiply by 10 → `100 * 10 = 1000`
+   * Returns `1000` to `main()`.
+
+---
+
+#### **Back in `main()`**
+
+* The returned value `1000` is printed:
+
+  ```
+  A*B*10 : 1000
+  ```
+
+---
+
+### **Step 5 — Second calculation (A\*B)**
+
+```cpp
+cout << "\nA*B    : " << tst.GetAtimesB();
+```
+
+* Here, `tst` is still the **original** object from `main()`, unchanged by the previous function call.
+* `GetAtimesB()` → `15 * 15 = 225`
+* Prints:
+
+  ```
+  A*B    : 225
+  ```
+
+---
+
+### **Step 6 — Program ends**
+
+* The final output is:
+
+```
+A*B*10 : 1000
+A*B    : 225
+```
+
+---
+
+## **Why the results are different**
+
+* The key reason: `AtimesBtimes10()` takes the object **by value**, so any changes happen **only to the copy** and **not** to the original object in `main()`.
+
+---
+
+If this function took the parameter **by reference** (`Test &tst`), then changing `a` and `b` in the function would also change them in `main()`, and the second output would be different.
+
+---
+
+If you want, I can **trace this same program’s memory state** in a diagram so you can visualize the object copying process.
+That would make the working process even clearer.
