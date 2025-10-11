@@ -14,14 +14,14 @@ int main()
     cin>>size;
     int A[size];
 
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size-1;i++)
     {
         cout<<"Give elements for "<<i+1 <<" no array : ";
         cin>>A[i];
     }
     cout<<"Which value you want to put into x : ";
     cin>>x;
-    cout<<"In which index you want put into value k : ";
+    cout<<"In which position you want put into value k : ";
     cin>>p;
     k=p-1;
 
@@ -33,7 +33,8 @@ int main()
     }
      A[k] = x;
     for(int i=0;i<size;i++)
-    {cout<<A[i]<<" ";
+    {
+        cout<<A[i]<<" ";
 
     }
     getch();
