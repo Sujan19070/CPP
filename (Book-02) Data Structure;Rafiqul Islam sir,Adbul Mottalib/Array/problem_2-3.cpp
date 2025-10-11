@@ -27,7 +27,7 @@ int main()
 
     
    }
-cout<<"Total summation of all even number in this Array : "<< sum_even<<endl;
+    cout<<"Total summation of all even number in this Array : "<< sum_even<<endl;
     cout<<"Total summation of all odd number in this Array : "<< sum_odd;
 
     return 0;
