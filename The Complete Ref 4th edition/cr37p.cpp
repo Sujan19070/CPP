@@ -14,6 +14,7 @@ int main()
     y = 2;
 
     printf("%d %d", x / y, x % y);
+    
 
     return 0;
 }

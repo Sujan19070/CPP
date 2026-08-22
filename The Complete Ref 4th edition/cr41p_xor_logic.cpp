@@ -1,4 +1,4 @@
-#include <stdio.h>
+extern "C" int printf(const char*, ...);
 
 int Logic(int a, int b);
 
@@ -11,7 +11,7 @@ int main(void)
 
     return 0;
 }
-int Logic(int a,int b)
+int Logic(int a, int b)
 {
     return (a || b) && !(a && b);
 }
